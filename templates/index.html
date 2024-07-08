@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGRN/INN</title>
+    <link rel="stylesheet" href="..\static\style.css">
+    <style>
+        .old-value {
+            text-decoration: line-through;
+            color: red;
+        }
+        .new-value {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ОГРН/ИНН</h1>
+        <form action="/search" method="post">
+            <label for="ogrn">Ввести ОГРН или ИНН:</label>
+            <input type="text" id="ogrn" name="ogrn" required>
+            <button type="submit">Искать</button>
+        </form>
+
+        {% if data %}
+        <h2>Результат по ОГРН или ИНН: {{ ogrn }}</h2>
+        <table>
+            <thead>
+                <tr><th>Поле</th><th>Значение</th></tr>
+            </thead>
+            <tbody>
+                {% set translations = {
+                    "inn": "ИНН",
+                    "ogrn": "ОГРН",
+                    "kpp": "КПП",
+                    'establishment_date': 'Дата регистрации',
+                    "liquidationDate": "Дата ликвидации",
+                    "region": "Регион",
+                    "full_name": "Полное наименование",
+                    "short_name": "Сокращенное наименование",
+                    "status": "Статус",
+                    "address": "Адрес",
+                    "boss_name": "Имя руководителя",
+                    "boss_post": "Должность руководителя"
+                } %}
+                {% for key, value in data.items() %}
+                <tr>
+                    <td>{{ translations.get(key, key) }}</td>
+                    <td>
+                        {% if key in differences %}
+                            {% if key == 'address' %}
+                                <span class="old-value">{{ differences[key][0]|safe }}</span><br>
+                                <span class="new-value">{{ differences[key][1]|safe }}</span>
+                            {% else %}
+                                <span class="old-value">{{ differences[key][0] }}</span>
+                                <span class="new-value">{{ differences[key][1] }}</span>
+                            {% endif %}
+                        {% else %}
+                            {{ value if value is not none else '-' }}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                {% if okveds %}
+                <tr>
+                    <td>ОКВЭД - Код</td>
+                    <td>{{ okveds.code }}</td>
+                </tr>
+                <tr>
+                    <td>ОКВЭД - Значение</td>
+                    <td>{{ okveds.value }}</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</body>
+</html>

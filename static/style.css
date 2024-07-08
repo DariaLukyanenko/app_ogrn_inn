@@ -1,0 +1,92 @@
+/* Reset and global styles */
+body {
+    font-family: 'Georgia', serif;
+    background-color: #E6F2FF;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: #007BFF;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+label {
+    margin-bottom: 10px;
+    color: #007BFF;
+}
+
+input, button {
+    padding: 10px;
+    margin-bottom: 20px;
+    width: calc(100% - 42px);
+    box-sizing: border-box;
+    border: 1px solid #007BFF;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    width: 120px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #e6f2ff; /* Очень светлый голубой */
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f2f9ff; /* Светлый голубой */
+}
+
+tbody tr:hover {
+    background-color: #d0e7ff; /* Немного более темный голубой */
+}
